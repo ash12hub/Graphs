@@ -68,15 +68,16 @@ while True:
                 traversal_graph[player.current_room.id][entrance] = previous_room.id
                 traversal_graph[player.current_room.id]['first_visit'] = entrance
                 new_room = True
-            # print(previous_room.id, traversal_graph[previous_room.id])
-            # print(player.current_room.id, traversal_graph[player.current_room.id])
             break
+    
+    # Check if all the nodes are found
+    # Break out of the supposedly infinite while loop
     if len(traversal_graph) == len(room_graph):
         break
     
+    # If no new room found, backtrack
     if not next_room_found:
         prerious_room = player.current_room
-        # print(player.current_room.id)
         exit = traversal_graph[player.current_room.id]['first_visit']
         traversal_path.append(exit)
         player.travel(exit)
